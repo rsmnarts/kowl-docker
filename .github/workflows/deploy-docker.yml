@@ -45,3 +45,10 @@ jobs:
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
           file: kowl/Dockerfile
+          build-args: |
+            KOWL_GIT_SHA=${{ github.sha }}
+            KOWL_GIT_REF=${{ steps.extract_ref.outputs.ref }}
+            KOWL_TIMESTAMP=${{ steps.set_timestamp.outputs.time }}
+            BUILT_FROM_PUSH=${{ github.event.action != 'published' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
