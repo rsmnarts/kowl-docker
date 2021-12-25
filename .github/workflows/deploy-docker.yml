@@ -29,6 +29,11 @@ jobs:
         run: echo "##[set-output name=ref;]$(echo ${GITHUB_REF##*/})"
         id: extract_ref
       -
+        name: Set timestamp
+        shell: bash
+        run: echo "::set-output name=time::$(date +%s)"
+        id: set_timestamp
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
