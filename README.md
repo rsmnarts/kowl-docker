@@ -1,6 +1,8 @@
 # Kowl
 Kowl is a Web UI for Apache Kafka that allows exploring messages, consumers, configurations and more with a focus on a good UI & UX.
 
+### Support Apple M1
+
 ### Quick Start
 
 Do you just want to test Kowl against one of your Kafka clusters without spending too much time on the test setup? Here are some docker commands that allow you to run it locally against an existing Kafka cluster:
