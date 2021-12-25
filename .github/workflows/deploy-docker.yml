@@ -60,3 +60,10 @@ jobs:
             BUILT_FROM_PUSH=${{ github.event.action != 'published' }}
           cache-from: type=gha
           cache-to: type=gha,mode=max
+      -
+        name: Docker Hub Description
+        uses: peter-evans/dockerhub-description@v2
+        with:
+          username: ${{ secrets.DOCKERHUB_UNAME }}
+          password: ${{ secrets.DOCKERHUB_TOKEN }}
+          repository: rsmnarts/kowl-docker
