@@ -24,6 +24,11 @@ jobs:
         with:
           repository: cloudhut/kowl
       -
+        name: Extract ref/branch name
+        shell: bash
+        run: echo "##[set-output name=ref;]$(echo ${GITHUB_REF##*/})"
+        id: extract_ref
+      -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
       -
