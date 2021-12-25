@@ -45,29 +45,21 @@ jobs:
         with:
           username: ${{ secrets.DOCKERHUB_UNAME }}
           password: ${{ secrets.DOCKERHUB_PASS }}
-#       -
-#         name: Build and push
-#         uses: docker/build-push-action@v2
-#         with:
-#           context: .
-#           platforms: linux/amd64,linux/arm64
-#           push: true
-#           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-#           build-args: |
-#             KOWL_GIT_SHA=${{ github.sha }}
-#             KOWL_GIT_REF=${{ steps.extract_ref.outputs.ref }}
-#             KOWL_TIMESTAMP=${{ steps.set_timestamp.outputs.time }}
-#             BUILT_FROM_PUSH=${{ github.event.action != 'published' }}
-#           cache-from: type=gha
-#           cache-to: type=gha,mode=max
       -
-        name: Docker Hub Description
-        uses: peter-evans/dockerhub-description@v2
+        name: Build and push
+        uses: docker/build-push-action@v2
         with:
-          username: ${{ secrets.DOCKERHUB_UNAME }}
-          password: ${{ secrets.DOCKERHUB_PASS }}
-          repository: ${{ env.IMAGE_NAME }}
-          short-description: ${{ github.event.repository.description }}
+          context: .
+          platforms: linux/amd64,linux/arm64
+          push: true
+          tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
+          build-args: |
+            KOWL_GIT_SHA=${{ github.sha }}
+            KOWL_GIT_REF=${{ steps.extract_ref.outputs.ref }}
+            KOWL_TIMESTAMP=${{ steps.set_timestamp.outputs.time }}
+            BUILT_FROM_PUSH=${{ github.event.action != 'published' }}
+          cache-from: type=gha
+          cache-to: type=gha,mode=max
       -
         name: Run Trivy vulnerability scanner
         uses: aquasecurity/trivy-action@master
