@@ -19,11 +19,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - 
-        name: Clone official repo
-        uses: GuillaumeFalourd/clone-github-repo-action@main
+        name: Checkout
+        uses: actions/checkout@v2
         with:
-          owner: 'cloudhut'
-          repository: 'kowl'
+          name: cloudhut/kowl
       -
         name: Set up QEMU
         uses: docker/setup-qemu-action@v1
@@ -44,7 +43,6 @@ jobs:
           platforms: linux/amd64,linux/arm64
           push: true
           tags: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}
-          file: kowl/Dockerfile
           build-args: |
             KOWL_GIT_SHA=${{ github.sha }}
             KOWL_GIT_REF=${{ steps.extract_ref.outputs.ref }}
