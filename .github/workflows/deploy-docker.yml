@@ -3,12 +3,6 @@ name: CI
 on:
   schedule:
     - cron: '38 11 * * *'
-  push:
-    branches: [ main ]
-    # Publish semver tags as releases.
-    # tags: [ 'v*.*.*' ]
-  pull_request:
-    branches: [ main ]
 
 env:
   REGISTRY: docker.io
